@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
 //DELETE /api/students/:id -> delete stident id
 router.delete('/:id', async(req,res) => {
     try{
-        const result = await student.findByIdAndDelete(req.params.id);
+        const result = await Student.findByIdAndDelete(req.params.id);
         if (!result) return res.status(404).json({error: 'Not Found'});
         return res.json({ok:true});
     } catch(err){
