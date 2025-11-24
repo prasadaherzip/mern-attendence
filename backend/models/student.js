@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const StudentSchema = new mongoose.Schema({
-    name:{
-        type: String,       
+    name: {
+        type: String,
         required: true,     //must be provided
         trim: true          // remove leading and trailing spaces
     },
@@ -11,27 +11,43 @@ const StudentSchema = new mongoose.Schema({
         unique: true,       //create unique index
         required: true,
         trim: true,
-        uppercase: true      
+        uppercase: true
     },
     class: {
         type: String,
         required: true,
-        default:"FYMCA",
+        default: "FYMCA",
         trim: true
     },
     email: {
         type: String,
         required: true,
         unique: true,
-        lowsercase: true,
+        lowercase: true,
         match: [/^\S+@\S+\.\S+$/, 'Invalid email'] //something@something.something for searching emails
     },
     createdAt: {
         type: Date,
         default: Date.now
-    }
+    },
+    attendance: [{
+        date: {
+            type: String, // YYYY-MM-DD
+            required: true
+        },
+        status: {
+            type: String,
+            enum: ['Present', 'Absent'],
+            required: true
+        }
+    }],
+    marks: [{
+        subject: { type: String, required: true },
+        score: { type: Number, required: true },
+        total: { type: Number, required: true }
+    }]
 });
-      
 
-module.exports= mongoose.model('Student', StudentSchema);
+
+module.exports = mongoose.model('Student', StudentSchema);
 

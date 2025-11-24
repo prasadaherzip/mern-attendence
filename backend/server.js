@@ -1,8 +1,9 @@
 // server.js
-require('dotenv').config();     //lets use .env files for later
-const express = require('express'); //lib to help create a server
-const cors = require('cors');       //react app to talk to backend
-const mongoose = require('mongoose'); 
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const connectDB = require('./config/db');
+const studentRoutes = require('./routes/studentRoutes');
 
 const app = express();
 
@@ -11,9 +12,10 @@ app.use(cors());
 app.use(express.json());
 
 // connect to MongoDB
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB connected"))
-  .catch((err) => console.error("❌ MongoDB error:", err));
+connectDB();
+
+// routes
+app.use('/api/students', studentRoutes);
 
 // test route
 app.get('/api/ping', (req, res) => {
@@ -25,7 +27,3 @@ const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
-
-//add students.js route to sever
-const studentsRouter = require('./routes/students');
-app.use('/api/students', studentsRouter);
