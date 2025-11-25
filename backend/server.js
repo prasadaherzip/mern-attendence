@@ -4,6 +4,9 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const studentRoutes = require('./routes/studentRoutes');
+const attendanceRoutes = require('./routes/attendanceRoutes');
+const marksRoutes = require('./routes/marksRoutes');
+const exportRoutes = require('./routes/exportRoutes');
 
 const app = express();
 
@@ -16,6 +19,9 @@ connectDB();
 
 // routes
 app.use('/api/students', studentRoutes);
+app.use('/api/attendance', attendanceRoutes);
+app.use('/api/marks', marksRoutes);
+app.use('/api/export', exportRoutes);
 
 // test route
 app.get('/api/ping', (req, res) => {
