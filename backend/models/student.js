@@ -42,7 +42,11 @@ const StudentSchema = new mongoose.Schema({
         }
     }],
     marks: [{
-        subject: { type: String, required: true },
+        subject: {
+            type: String,
+            required: true,
+            enum: ['English', 'Maths', 'OS', 'MIS', 'SEPM']
+        },
         score: { type: Number, required: true },
         total: { type: Number, required: true }
     }]

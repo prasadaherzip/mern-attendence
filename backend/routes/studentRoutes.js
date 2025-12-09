@@ -16,7 +16,14 @@ router.post('/', async (req, res) => {
             name,
             roll,
             class: cls || undefined,
-            email
+            email,
+            marks: [
+                { subject: 'English', score: 0, total: 100 },
+                { subject: 'Maths', score: 0, total: 100 },
+                { subject: 'OS', score: 0, total: 100 },
+                { subject: 'MIS', score: 0, total: 100 },
+                { subject: 'SEPM', score: 0, total: 100 }
+            ]
         });
 
         return res.status(201).json(student);

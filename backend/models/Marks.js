@@ -9,6 +9,7 @@ const MarksSchema = new mongoose.Schema({
     subject: {
         type: String,
         required: true,
+        enum: ['English', 'Maths', 'OS', 'MIS', 'SEPM'],
         trim: true
     },
     score: {

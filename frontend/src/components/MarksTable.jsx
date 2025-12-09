@@ -57,15 +57,20 @@ const MarksTable = ({ student, onClose, onUpdate }) => {
                     <form onSubmit={handleSubmit} className="flex gap-4 mb-8 items-end bg-slate-50 p-4 rounded-xl border border-slate-100">
                         <div className="flex-1 space-y-1">
                             <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Subject</label>
-                            <input
-                                type="text"
+                            <select
                                 name="subject"
-                                placeholder="Math"
                                 value={formData.subject}
                                 onChange={handleChange}
                                 className="w-full border border-slate-200 p-2.5 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none bg-white"
                                 required
-                            />
+                            >
+                                <option value="" disabled>Select Subject</option>
+                                <option value="English">English</option>
+                                <option value="Maths">Maths</option>
+                                <option value="OS">OS</option>
+                                <option value="MIS">MIS</option>
+                                <option value="SEPM">SEPM</option>
+                            </select>
                         </div>
                         <div className="w-24 space-y-1">
                             <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Score</label>
@@ -119,8 +124,8 @@ const MarksTable = ({ student, onClose, onUpdate }) => {
                                             <td className="p-4 text-slate-600">{mark.total}</td>
                                             <td className="p-4">
                                                 <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${(mark.score / mark.total) >= 0.4
-                                                        ? 'bg-emerald-100 text-emerald-800'
-                                                        : 'bg-red-100 text-red-800'
+                                                    ? 'bg-emerald-100 text-emerald-800'
+                                                    : 'bg-red-100 text-red-800'
                                                     }`}>
                                                     {((mark.score / mark.total) * 100).toFixed(2)}%
                                                 </span>
